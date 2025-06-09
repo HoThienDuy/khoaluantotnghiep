@@ -27,31 +27,28 @@
 
 
 
-typedef ap_fixed<16,2,AP_RND,AP_SAT> DTYPE_OUT;
-typedef ap_fixed<16,2,AP_RND,AP_SAT> DTYPE_IN;
+typedef ap_fixed<16,3,AP_RND,AP_SAT> DTYPE_OUT;
+typedef ap_fixed<16,3,AP_RND,AP_SAT> DTYPE_IN;
 
-struct window {
-	DTYPE_OUT pix [FILTER_V_SIZE][FILTER_H_SIZE];
-};
-//struct window1 {
-//	DTYPE_OUT pix [8][FILTER_V_SIZE][FILTER_H_SIZE];
-//};
+
 
 extern "C" {
 
-void filter2d_accel(
-		       DTYPE_IN kernel[72],
+void CNN(
+		        DTYPE_IN kernel[72],
 				DTYPE_IN kernel_1[1152],
 				DTYPE_IN kernel_2[4608],
 				DTYPE_IN kernel_3[18432],
+				DTYPE_IN kernel_4[230400],
+				DTYPE_IN kernel_5[100],
 			    DTYPE_IN bias[8],
 			    DTYPE_IN bias_1[16],
 				DTYPE_IN bias_2[32],
 				DTYPE_IN bias_3[64],
+				DTYPE_IN bias_4[100],
+				DTYPE_IN bias_5[1],
 		        DTYPE_IN src[MAX_IMAGE_WIDTH*MAX_IMAGE_HEIGHT],
-		        DTYPE_OUT dst[6*6*64]
+		        DTYPE_OUT dst[1]
 );
 
 }
-
-
